@@ -4,7 +4,7 @@ function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/products`)
+    fetch("/api/products")  // relative path; Nginx will proxy
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error(err));
@@ -14,7 +14,7 @@ function ProductList() {
     <div>
       {products.map((p) => (
         <div key={p.id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
-          <img src={p.image} alt={p.name} width="150" />
+          <img src={p.image_url} alt={p.name} width="150" />
           <h3>{p.name}</h3>
           <p>${p.price}</p>
         </div>
@@ -22,5 +22,7 @@ function ProductList() {
     </div>
   );
 }
+
+export default ProductList;
 
 export default ProductList;
