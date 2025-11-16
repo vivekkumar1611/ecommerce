@@ -1,10 +1,13 @@
+// ~/ecommerce/backend/db.js
+
 const mysql = require("mysql2");
+require('dotenv').config(); // Load environment variables from .env
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "ecommerce_user",
+  password: process.env.DB_PASS || "12345678",
+  database: process.env.DB_NAME || "ecommerce_db",
 });
 
 db.connect((err) => {
